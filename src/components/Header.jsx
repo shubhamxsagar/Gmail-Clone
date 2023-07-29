@@ -1,5 +1,5 @@
 import {AppBar, Toolbar, styled, InputBase, Box} from '@mui/material';
-import {Menu as MenuIcon, Search, Tune, HelpOutlineOutlined} from '@mui/icons-material';
+import {Menu as MenuIcon, Search, Tune, HelpOutlineOutlined, SettingsOutlined, AppsOutlined, AccountCircleOutlined } from '@mui/icons-material';
 import { gmailLogo } from '../constants/constant';
 
 
@@ -13,6 +13,7 @@ const SearchWrapper=styled(Box)({
     marginLeft: 80,
     borderRadius: 8,
     minWidth: 690,
+    maxWidth:720,
     height: 48,
     display: 'flex',
     alignItems: 'center',
@@ -20,25 +21,39 @@ const SearchWrapper=styled(Box)({
     padding: '0 20px',
     '& > div': {
         width: '100%',
-        padding: '0 10px'
     }
 })
 
-const Header= () => {
+const OptionWrapper = styled(Box)({
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'end',
+    '& > svg': {
+        marginLeft: 20
+    }
+})
+
+
+const Header = ({ toggleDrawer }) => {
+
     return (
-        <StyledAppBar>
+        <StyledAppBar position='static'>
             <Toolbar>
-                <MenuIcon color='action'/>
-                <img src={gmailLogo} alt='logo' style={{ width: 110, marginLeft: 15}}/>
+                <MenuIcon color="action" onClick={toggleDrawer} />
+                <img src={gmailLogo} alt="logo" style={{ width: 110, marginLeft: 15 }} />
                 <SearchWrapper>
                     <Search color='action'/>
                     <InputBase
-                    placeholder='Search mail'/>
+                    placeholder='Search mail'
+                    />
                     <Tune color='action'/>
                 </SearchWrapper>
-                <div>
+                <OptionWrapper>
                     <HelpOutlineOutlined color='action'/>
-                </div>
+                    <SettingsOutlined color='action'/>
+                    <AppsOutlined color='action'/>
+                    <AccountCircleOutlined color='action'/>
+                </OptionWrapper>
             </Toolbar>
         </StyledAppBar>
     )
